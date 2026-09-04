@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# AWS
+.aws/
+*.pem
+aws-exports.js
+
+# Terraform (if used instead of/alongside CloudFormation)
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# CloudFormation packaged output
+packaged-template.yaml
+
+# Environment / secrets
+.env
+*.env
+credentials.json
+
+# Editor
+.vscode/
+*.swp
