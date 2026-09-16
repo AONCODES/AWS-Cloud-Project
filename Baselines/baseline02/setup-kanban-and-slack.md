@@ -1,16 +1,36 @@
 # Task Documentation: Setup Kanban and Slack
 
 This task establishes project development tracking and communication for the project. GitHub Project Kanban board is used to track the
-progress of the Baseline and Target Level Tasks, and the course Slack workspace is used for communication.
+progress of the Baseline and Target Tasks, and the course Slack workspace is used for communication.
 
 ## Task Artifacts
 
-- `<tiedosto>.md` — tämä dokumentaatio
-- `main.tf`, `variables.tf`, `outputs.tf` — Terraform-konfiguraatio
-- `screenshots/` — kuvakaappaukset verifioinnista
-- `terraform.tfvars.example` — esimerkki parametreista
-- `screenshots/`- automate screenshot folders to each baseline folder.
+- `baseline02/setup-kanban-and-slack.md` — this documentation
+- GitHub Project Kanban board - project progress tracking
+- Baseline GitHub Issues
+- Slack webhook documentation
+- `screenshots/`- screenshot folders to each baseline folder.
 
+## Task Description
+### Mission
+
+Create a GitHub Project Kanban board (+ invite trainer) for tracking the Cloud Project, create an Issues for each Baseline Task, and join the course Slack workspace. Configurate VSCode to add `/screenshot` folders to each Baseline folder.
+
+### Deployment process
+1. Configure VS Code Markdown Copy Files: Destination
+2. Create a GitHub Project for the Cloud Project.
+3. Configure the Project statuses: Todo, In Progress, Blocked, and Done.
+4. Invite the trainer to the GitHub Project.
+5. Create GitHub Issues for the Baseline and Target Level Tasks.
+6. Add the Issues to the GitHub Project.
+7. Move the current Baseline Task to Doing.
+8. Test Issue linkage by referencing the current Issue ID in a Git commit.
+9. Join the course Slack workspace.
+10. Document the required Slack webhook configuration.
+11. Add verification screenshots to the documentation.
+
+
+### Screenshots/
 In VSCode press `cmd + ,` then search `Markdown Copy Files: Destination` then add file and type:
 
 ![alt text](<screenshots/Näyttökuva 2026-09-16 kello 20.17.47.png>)
@@ -19,105 +39,33 @@ In VSCode press `cmd + ,` then search `Markdown Copy Files: Destination` then ad
 This will automatically create `screenshots` folder to your working folder when screenshots are added.
 
 
-## Task Description
-### Mission
+![alt text](<screenshots/Näyttökuva 2026-09-16 kello 20.52.48.png>)
 
-<Mitä tässä tehtävässä piti saada aikaan.>
+### Kanban
 
-### Naming convention
-
-Snake_case, muoto `<project>_<env>_<resource_type>_<descriptor>`:
-
-```
-ctfd_dev_vpc_main
-ctfd_dev_subnet_public_az1
-ctfd_dev_sg_web
-```
-
-### Tagging
-
-| Tag | Arvo |
-|-----|------|
-| implementation | ctfd |
-| task | baseline_NN |
-| responsible | <nimi> |
-| deployment | dev |
-
-Resurssien haku tagien perusteella:
-
+Create a new GitHub Project. 
 ```bash
-aws resourcegroupstaggingapi get-resources \
-  --tag-filters Key=task,Values=baseline_NN
+AWS-Cloud-Project repository
+-> Projects 
+-> New Project  
+-> Kanban 
+-> Create project.
 ```
-
-### Handled outside IaC
-
-<Mitä tehtiin käsin konsolissa tai CLI:llä.>
-
-### Handled by IaC
-
-<Mitä Terraform hoitaa.>
-
-### File structure
-
-```
-baselineNN/
-  <task-name>.md
-  main.tf
-  variables.tf
-  outputs.tf
-  terraform.tfvars.example
-  screenshots/
-```
-
-### Parametering
-
-| Muuttuja | Oletus | Kuvaus |
-|----------|--------|--------|
-| region | eu-north-1 | AWS-alue |
-
-### Deployment process
-
+The project contains the following lanes (you can change names of the lanes as you wish):
 ```bash
-cd baselineNN
-terraform init
-terraform plan
-terraform apply
+Todo
+In Progress  
+Blocked  
+Done
 ```
 
-### CLI commands
+Then go to project settings -> manage access and invite trainer as collaborator.
 
-```bash
-<komennot joita käytit tarkistamiseen>
-```
 
-### Verification of deployment
+### Issues
 
-![verification](screenshots/verification.png)
+### Slack
 
-### Errors encountered and solutions
-
-| Ongelma | Ratkaisu |
-|---------|----------|
-| | |
-
-### Architecture picture
-
-<Kuva tai linkki diagrammiin.>
-
-### Prompts and models used
-
-<AI-työkalut ja mihin niitä käytit.>
-
-### Sources
-
-- <linkki>
+### Deployment Process
 
 ### What is needed later
-
-<Mitä viedään seuraavaan tehtävään.>
-TEMPLATE_EOF
-
-git add TASK_TEMPLATE.md
-git commit -m "docs: add task documentation template based on trainer template"
-git push
