@@ -33,13 +33,13 @@ Create a GitHub Project Kanban board (+ invite trainer) for tracking the Cloud P
 ### Screenshots/
 In VSCode press `cmd + ,` then search `Markdown Copy Files: Destination` then add file and type:
 
-![alt text](<screenshots/Näyttökuva 2026-09-16 kello 20.17.47.png>)
+![alt text](<kuva1.png>)
 
 
 This will automatically create `screenshots` folder to your working folder when screenshots are added.
 
 
-![alt text](<screenshots/Näyttökuva 2026-09-16 kello 20.52.48.png>)
+![alt text](<kuva2.png>)
 
 ### Kanban
 
