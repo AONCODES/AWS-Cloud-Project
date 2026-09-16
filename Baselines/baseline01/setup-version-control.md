@@ -117,3 +117,6 @@ Now we are set to start creating folders and files manually in VSCode (to do thi
 You can also use VScode's graphic UI for GIT (add, commit, push) = **Source Control panel** (SCP) (left sidebar) → staged changes → wrote commit
   message → **Commit** → **Sync Changes** (push). Also AI generation is possible with SCP.
 
+### What is used for later
+
+I generated my own task template based on instructions and original template (provided by course material). Made new file `task_template.md` to AWS-CLOUD-PROJECT.
