@@ -1,8 +1,7 @@
-# Baseline 02: Setup Kanban and Slack
+# Task Documentation: Setup Kanban and Slack
 
-# Task Documentation: <Task Name>
-
-<Lyhyt yleiskuvaus tästä baseline-tehtävästä, 2-3 lausetta.>
+This task establishes project development tracking and communication for the project. GitHub Project Kanban board is used to track the
+progress of the Baseline and Target Level Tasks, and the course Slack workspace is used for communication.
 
 ## Task Artifacts
 
@@ -10,9 +9,17 @@
 - `main.tf`, `variables.tf`, `outputs.tf` — Terraform-konfiguraatio
 - `screenshots/` — kuvakaappaukset verifioinnista
 - `terraform.tfvars.example` — esimerkki parametreista
+- `screenshots/`- automate screenshot folders to each baseline folder.
+
+In VSCode press `cmd + ,` then search `Markdown Copy Files: Destination` then add file and type:
+
+![alt text](<screenshots/Näyttökuva 2026-09-16 kello 20.17.47.png>)
+
+
+This will automatically create `screenshots` folder to your working folder when screenshots are added.
+
 
 ## Task Description
-
 ### Mission
 
 <Mitä tässä tehtävässä piti saada aikaan.>
