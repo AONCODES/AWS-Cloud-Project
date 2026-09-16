@@ -24,6 +24,7 @@ the remote repository.
 
 ```
 AWS-Cloud-Project/
+  task_template.md
   README.md
   LICENSE
   DISCLAIMER.md
@@ -58,7 +59,7 @@ AWS-Cloud-Project/
    content (I generated DISCLAILMER + .gitignore with Claude AI).
 9. Commit and push using VS Code's terminal.
 
-### Deployment instructions / CLI commands
+### Deployment instructions
 
 Install and authenticate GitHub CLI (macOS), do it in macOS terminal.
 

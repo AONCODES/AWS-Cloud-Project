@@ -43,7 +43,7 @@ This will automatically create `screenshots` folder to your working folder when 
 
 ### Kanban
 
-Create a new GitHub Project. 
+The Kanban board is used to visualize the progress of all Baseline and Target Tasks. Start by creating a new GitHub Project. 
 ```bash
 AWS-Cloud-Project repository
 -> Projects 
@@ -51,7 +51,7 @@ AWS-Cloud-Project repository
 -> Kanban 
 -> Create project.
 ```
-The project contains the following lanes (you can change names of the lanes as you wish):
+The project contains the following lanes (named according to trainer instructions):
 ```bash
 Todo
 In Progress  
@@ -59,10 +59,12 @@ Blocked
 Done
 ```
 
-Then go to project settings -> manage access and invite trainer as collaborator.
+Then go to project settings -> manage access and invite trainer as a collaborator.
 
 
 ### Issues
+
+
 
 ### Slack
 
