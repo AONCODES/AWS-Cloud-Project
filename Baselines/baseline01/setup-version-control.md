@@ -112,20 +112,8 @@ Now we are set to start creating folders and files manually in VSCode (to do thi
 ```
 `feat` is a conventional commit. You may use feat, fix, chore or others depending what changes are being made.
 
-`(#1)` is used for issue linkage, more informaiton in next baseline.
+`(#1)` is used for issue linkage, more informaton in next baseline.
 
 You can also use VScode's graphic UI for GIT (add, commit, push) = **Source Control panel** (SCP) (left sidebar) → staged changes → wrote commit
   message → **Commit** → **Sync Changes** (push). Also AI generation is possible with SCP.
-
-
-
-Commit convention used throughout the course (Conventional Commits,
-linked to Kanban issue IDs) — typed directly into VS Code's commit
-message box:
-
-```
-feat(#4): add VPC and subnets
-fix(#4): correct subnet CIDR overlap
-chore(#4): fix typo in documentation
-```
 
