@@ -64,8 +64,8 @@ Then go to project settings -> manage access and invite trainer as a collaborato
 
 ### Issues
 
+![alt text](screenshots/image.png)
 
-![alt text](<screenshots/Näyttökuva 2026-09-17 kello 17.24.33.png>)
 ### Slack
 
 ### Deployment Process
