@@ -27,7 +27,7 @@ Create a GitHub Project Kanban board (+ invite trainer) for tracking the Cloud P
 8. Test Issue linkage by referencing the current Issue ID in a Git commit.
 9. Join the course Slack workspace.
 10. Document the required Slack webhook configuration.
-11. Add verification screenshots to the documentation.
+
 
 
 ### Screenshots/
@@ -36,7 +36,7 @@ In VSCode press `cmd + ,` then search `Markdown Copy Files: Destination` then ad
 ![alt text](<screenshots/kuva1.png>)
 
 
-This will automatically create `screenshots` folder to your working folder when screenshots are added.
+This will automatically create `screenshots` folder to your working folder when screenshots are added. To add screenshots press `control + command + shift + 4` -> you will take a screenshot to your clipboard and then `command + v` add to `.md file`. If you use drag and drop there will be a problem with UNICODE (macOS users, at least I had problems). VSCode will make image.png file and with `nameIncrementally` tool VSCode will automatically add a number if there are existing file with same name.
 
 
 ![alt text](<screenshots/kuva2.png>)
@@ -64,7 +64,25 @@ Then go to project settings -> manage access and invite trainer as a collaborato
 
 ### Issues
 
+Issues are linked to GitHub Project so that their progress can be tracked using the Kanban board.
+Issue IDs can also be referenced from Git commits.
+
+```bash
+AWS-Cloud-Project repository
+-> Project
+-> Kanban 
+-> Todo section -> press `+`
+-> Add title and press crea new issue
+-> Do this 15 times to add all baseline tasks
+```
+
 ![alt text](screenshots/image.png)
+
+`git commit -m "feat(#2): document Kanban and Slack setup"`.
+
+The #2 references GitHub Issue number 2.
+A reference links the commit to the Issue. 
+
 
 ### Slack
 
