@@ -78,14 +78,35 @@ AWS-Cloud-Project repository
 
 ![alt text](screenshots/image.png)
 
-`git commit -m "feat(#2): document Kanban and Slack setup"`.
+`git commit -m "feat(#2): document Kanban and test issue"`.
 
 The #2 references GitHub Issue number 2.
 A reference links the commit to the Issue. 
 
+![alt text](screenshots/image-1.png)
 
 ### Slack
+Slack is a communication tool/app.
 
-### Deployment Process
+I signed in to Slack workspace with my school e-mail. After login there was Cloud Architecture 2026 option which I got an access.
+
+I searched "webhook" from trainers e-mails and there was test command: 
+```bash
+curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, world it is me YOURNAME!"}' SECRET URL HERE
+```
+Test result in Slack UI:
+
+![alt text](screenshots/image-2.png)
+
+According to [Red Hat](https://www.redhat.com/en/topics/automation/what-is-a-webhook): 
+
+``A webhook is a lightweight, event-driven communication that automatically sends data between applications via HTTP. Triggered by specific events, webhooks automate communication between application programming interfaces (APIs) and can be used to activate workflows, such as in GitOps environments.``
+
 
 ### What is needed later
+
+The GitHub Project will be used to track progress throughout the remaining Baseline and Target Tasks.
+
+GitHub Issue IDs will be used to link commits to tasks.
+
+The VS Code screenshot configuration will be reused when documenting Baseline Tasks.
