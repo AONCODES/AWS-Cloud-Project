@@ -6,9 +6,9 @@ progress of the Baseline and Target Tasks, and the course Slack workspace is use
 ## Task Artifacts
 
 - `baseline02/setup-kanban-and-slack.md` — this documentation
-- GitHub Project Kanban board - project progress tracking
-- Baseline GitHub Issues
-- Slack webhook documentation
+- `GitHub Project Kanban board` - project progress tracking
+- `Baseline GitHub Issues`
+- `Slack webhook documentation`
 - `screenshots/`- screenshot folders to each baseline folder.
 
 ## Task Description
