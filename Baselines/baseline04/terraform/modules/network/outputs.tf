@@ -2,8 +2,20 @@ output "vpc_id" {
   value = aws_vpc.main.id
 }
 
-output "subnet_web_id" {
-  value = aws_subnet.web.id
+output "subnet_public_az1_id" {
+  value = aws_subnet.public_az1.id
+}
+
+output "subnet_public_az2_id" {
+  value = aws_subnet.public_az2.id
+}
+
+output "subnet_private_az1_id" {
+  value = aws_subnet.private_az1.id
+}
+
+output "subnet_private_az2_id" {
+  value = aws_subnet.private_az2.id
 }
 
 output "nacl_web_id" {

@@ -21,9 +21,13 @@ module "network" {
   source = "./modules/network"
   aws_region = var.aws_region
   vpc_cidr = var.vpc_cidr
-  subnet_web_cidr = var.subnet_web_cidr
+  subnet_public_az1_cidr  = var.subnet_public_az1_cidr
+  subnet_public_az2_cidr  = var.subnet_public_az2_cidr
+  subnet_private_az1_cidr = var.subnet_private_az1_cidr
+  subnet_private_az2_cidr = var.subnet_private_az2_cidr
 }
 
+/*
 module "vm" {
   source = "./modules/vm"
   aws_region = var.aws_region
@@ -34,3 +38,4 @@ module "vm" {
   vm_type = var.vm_type
   vm_keypair = var.vm_keypair
 }
+'/
