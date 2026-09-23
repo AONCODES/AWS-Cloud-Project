@@ -38,4 +38,4 @@ module "vm" {
   vm_type = var.vm_type
   vm_keypair = var.vm_keypair
 }
-'/
+*/
