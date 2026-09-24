@@ -18,8 +18,12 @@ output "subnet_private_az2_id" {
   value = module.network.subnet_private_az2_id
 }
 
-output "aws_network_acl" {
-  value = module.network.nacl_web_id
+output "nacl_public_id" {
+  value = module.network.nacl_public_id
+}
+
+output "nacl_private_id" {
+  value = module.network.nacl_private_id
 }
 
 output "internet_gateway_id" {
