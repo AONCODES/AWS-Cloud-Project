@@ -8,6 +8,6 @@ subnet_private_az1_cidr = "10.0.0.32/28"
 subnet_private_az2_cidr = "10.0.0.48/28"
 
 vm_type = "t3.nano"
-vm_keypair = "learner-vm-key"
+vm_keypair = "terraform-vm-key"
 
 task = "VM"
