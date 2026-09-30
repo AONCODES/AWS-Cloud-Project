@@ -75,7 +75,7 @@ resource "aws_instance" "vm" {
   associate_public_ip_address = true
   key_name                    = aws_key_pair.vm_key.key_name
 
-  user_data = file("${path.root}/cloudinit/sample.yaml")
+  # user_data = file("${path.root}/cloudinit/sample.yaml")
 
   tags = {
     Name = "vm"
