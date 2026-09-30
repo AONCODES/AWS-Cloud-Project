@@ -1,3 +1,4 @@
+/*
 resource "aws_resourcegroups_group" "architect_course" {
   name = "ArchitectCourse"
 
@@ -16,6 +17,7 @@ resource "aws_resourcegroups_group" "architect_course" {
     })
   }
 }
+*/
 
 module "network" {
   source = "./modules/network"
@@ -27,15 +29,14 @@ module "network" {
   subnet_private_az2_cidr = var.subnet_private_az2_cidr
 }
 
-/*
+
 module "vm" {
   source = "./modules/vm"
   aws_region = var.aws_region
 
   vpc_id = module.network.vpc_id
-  subnet_id = module.network.subnet_web_id
+  subnet_id = module.network.subnet_public_az1_id
 
   vm_type = var.vm_type
   vm_keypair = var.vm_keypair
 }
-*/

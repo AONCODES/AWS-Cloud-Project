@@ -6,6 +6,14 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    tls = {
+      source: "hashicorp/tls"
+      version: "~> 4.0"
+    }
+    local = {
+      source: "hashicorp/local"
+      version: "~> 2.0"
+    } 
   }
 }
 
@@ -13,10 +21,11 @@ provider "aws" {
   region = var.aws_region
   default_tags {
     tags = {
-      Project     = "architect course"
-      Environment = "workshop"
-      Owner       = "learner"
-      IaC   = "Terraform"
+    Course            = "Solution Architecture Design and Cloud Deployment"
+    Implementation    = "Baseline"
+    Task              = var.task
+    Student           = "Aatu N"
+    "Deployment Type" = "Terraform"
     }
   }
 }

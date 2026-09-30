@@ -9,3 +9,5 @@ subnet_private_az2_cidr = "10.0.0.48/28"
 
 vm_type = "t3.nano"
 vm_keypair = "learner-vm-key"
+
+task = "VM"

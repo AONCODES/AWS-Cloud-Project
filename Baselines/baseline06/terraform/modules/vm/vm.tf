@@ -15,8 +15,29 @@ data "aws_ami" "ubuntu" {
   }
 }
 
-resource "aws_security_group" "web" {
-  name        = "web-sg"
+resource "tls_private_key" "vm_key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "aws_key_pair" "vm_key" {
+  key_name   = var.vm_keypair
+  public_key = tls_private_key.vm_key.public_key_openssh
+
+  tags = {
+    Name = var.vm_keypair
+  }
+}
+
+resource "local_file" "private_key" {
+  content         = tls_private_key.vm_key.private_key_pem
+  filename        = "${path.root}/${var.vm_keypair}.pem"
+  file_permission = "0400"
+}
+
+
+resource "aws_security_group" "vm" {
+  name        = "vm-sg"
   description = "Allow SSH"
   vpc_id      = var.vpc_id
 
@@ -42,21 +63,21 @@ resource "aws_security_group" "web" {
   }
 
   tags = {
-    Name = "web-sg"
+    Name = "vm-sg"
   }
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "vm" {
   ami                         = data.aws_ami.ubuntu.id
-  instance_type               = "t3.micro"
+  instance_type               = var.vm_type
   subnet_id                   = var.subnet_id
-  vpc_security_group_ids      = [aws_security_group.web.id]
+  vpc_security_group_ids      = [aws_security_group.vm.id]
   associate_public_ip_address = true
-  key_name                    = var.vm_keypair
+  key_name                    = aws_key_pair.vm_key.key_name
 
   user_data = file("${path.root}/cloudinit/sample.yaml")
 
   tags = {
-    Name = "web-vm"
+    Name = "vm"
   }
 }

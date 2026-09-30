@@ -34,17 +34,16 @@ output "route_table_web_id" {
   value = module.network.route_table_web_id
 }
 
-/*
+
 
 output "instance_id" {
   value = module.vm.instance_id
 }
 
-output "web_ip" {
-  value = module.vm.web_ip
+output "vm_public_ip" {
+  value = module.vm.vm_public_ip
 }
 
-output "web_dns" {
-  value = module.vm.web_dns
+output "vm_public_dns" {
+  value = module.vm.vm_public_dns
 }
-*/
