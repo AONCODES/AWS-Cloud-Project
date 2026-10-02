@@ -1,5 +1,7 @@
 resource "terraform_data" "public_storage" {
 
+  input = "public-object-storage-${random_string.bucket_suffix.result}"
+
   provisioner "local-exec" {
     command = <<-EOT
       aws s3api create-bucket \
@@ -20,6 +22,8 @@ resource "terraform_data" "public_storage" {
 
 
 resource "terraform_data" "protected_storage" {
+
+input = "protected-object-storage-${random_string.bucket_suffix.result}"
 
   provisioner "local-exec" {
     command = <<-EOT
