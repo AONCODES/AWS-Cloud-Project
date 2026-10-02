@@ -138,6 +138,17 @@ resource "aws_network_acl_rule" "public_ingress_https" {
   to_port        = 443
 }
 
+resource "aws_network_acl_rule" "public_ingress_ephemeral" {
+  network_acl_id = aws_network_acl.public.id
+  rule_number    = 130
+  egress         = false
+  protocol       = "tcp"
+  rule_action    = "allow"
+  cidr_block     = "0.0.0.0/0"
+  from_port      = 1024
+  to_port        = 65535
+}
+
 resource "aws_network_acl_rule" "egress_all" {
   network_acl_id = aws_network_acl.public.id
   rule_number    = 200
