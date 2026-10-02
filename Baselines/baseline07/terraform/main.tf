@@ -43,4 +43,6 @@ module "vm" {
 
 module "storage" {
   source = "./modules/storage"
+
+  aws_region = var.aws_region
 }

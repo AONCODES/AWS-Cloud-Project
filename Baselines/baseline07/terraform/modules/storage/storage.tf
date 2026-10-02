@@ -1,38 +1,47 @@
-resource "aws_s3_bucket" "public_storage" {
-  bucket_prefix = "public-object-storage-"
-  
+resource "terraform_data" "public_storage" {
 
-  tags = {
-    Name = "public-object-storage"
-    Task = "Object Storage"
+  provisioner "local-exec" {
+    command = <<-EOT
+      aws s3api create-bucket \
+        --bucket public-object-storage-${random_string.bucket_suffix.result} \
+        --region ${var.aws_region}
+
+      aws s3api put-public-access-block \
+        --bucket public-object-storage-${random_string.bucket_suffix.result} \
+        --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
+    EOT
+  }
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "aws s3 rb s3://public-object-storage-${random_string.bucket_suffix.result} --force || true"
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "public_storage" {
-  bucket = aws_s3_bucket.public_storage.id
 
-  block_public_acls       = false
-  ignore_public_acls      = false
-  block_public_policy     = false
-  restrict_public_buckets = false
-}
+resource "terraform_data" "protected_storage" {
 
+  provisioner "local-exec" {
+    command = <<-EOT
+      aws s3api create-bucket \
+        --bucket protected-object-storage-${random_string.bucket_suffix.result} \
+        --region ${var.aws_region}
 
-resource "aws_s3_bucket" "protected_storage" {
-  bucket_prefix = "protected-object-storage-"
-  
+      aws s3api put-public-access-block \
+        --bucket protected-object-storage-${random_string.bucket_suffix.result} \
+        --public-access-block-configuration "BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true"
+    EOT
+  }
 
-  tags = {
-    Name = "protected-object-storage"
-    Task = "Object Storage"
+  provisioner "local-exec" {
+    when    = destroy
+    command = "aws s3 rb s3://protected-object-storage-${random_string.bucket_suffix.result} --force || true"
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "protected_storage" {
-  bucket = aws_s3_bucket.protected_storage.id
 
-  block_public_acls       = true
-  ignore_public_acls      = true
-  block_public_policy     = true
-  restrict_public_buckets = true
+resource "random_string" "bucket_suffix" {
+  length  = 6
+  special = false
+  upper   = false
 }

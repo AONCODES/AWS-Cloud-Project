@@ -1,7 +1,7 @@
 output "public_storage_name" {
-  value = aws_s3_bucket.public_storage.id
+  value = "public-object-storage-${random_string.bucket_suffix.result}"
 }
 
 output "protected_storage_name" {
-  value = aws_s3_bucket.protected_storage.id
+  value = "protected-object-storage-${random_string.bucket_suffix.result}"
 }
