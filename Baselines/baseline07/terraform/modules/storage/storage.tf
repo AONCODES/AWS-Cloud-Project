@@ -16,7 +16,7 @@ resource "terraform_data" "public_storage" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = "aws s3 rb s3://public-object-storage-${random_string.bucket_suffix.result} --force || true"
+    command = "aws s3 rb s3://${self.input} --force || true"
   }
 }
 
@@ -39,8 +39,7 @@ input = "protected-object-storage-${random_string.bucket_suffix.result}"
 
   provisioner "local-exec" {
     when    = destroy
-    command = "aws s3 rb s3://protected-object-storage-${random_string.bucket_suffix.result} --force || true"
-  }
+    command = "aws s3 rb s3://${self.input} --force || true"  }
 }
 
 
