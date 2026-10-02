@@ -39,7 +39,8 @@ input = "protected-object-storage-${random_string.bucket_suffix.result}"
 
   provisioner "local-exec" {
     when    = destroy
-    command = "aws s3 rb s3://${self.input} --force || true"  }
+    command = "aws s3 rb s3://${self.input} --force || true"
+      }
 }
 
 
