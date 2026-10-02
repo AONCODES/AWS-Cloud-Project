@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "public_storage" {
   bucket_prefix = "public-object-storage-"
-  object_lock_enabled = false
+  
 
   tags = {
     Name = "public-object-storage"
@@ -17,30 +17,10 @@ resource "aws_s3_bucket_public_access_block" "public_storage" {
   restrict_public_buckets = false
 }
 
-resource "aws_s3_bucket_policy" "public_storage" {
-  bucket = aws_s3_bucket.public_storage.id
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-
-    Statement = [
-      {
-        Effect    = "Allow"
-        Principal = "*"
-        Action    = "s3:GetObject"
-        Resource  = "${aws_s3_bucket.public_storage.arn}/*"
-      }
-    ]
-  })
-
-  depends_on = [
-    aws_s3_bucket_public_access_block.public_storage
-  ]
-}
 
 resource "aws_s3_bucket" "protected_storage" {
   bucket_prefix = "protected-object-storage-"
-  object_lock_enabled = false
+  
 
   tags = {
     Name = "protected-object-storage"
