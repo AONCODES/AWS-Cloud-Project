@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "public_storage" {
   bucket_prefix = "public-object-storage-"
-  object_lock_enabled: false
+  object_lock_enabled = false
 
   tags = {
     Name = "public-object-storage"
@@ -40,7 +40,7 @@ resource "aws_s3_bucket_policy" "public_storage" {
 
 resource "aws_s3_bucket" "protected_storage" {
   bucket_prefix = "protected-object-storage-"
-  object_lock_enabled: false
+  object_lock_enabled = false
 
   tags = {
     Name = "protected-object-storage"
