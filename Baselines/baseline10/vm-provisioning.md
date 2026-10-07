@@ -118,19 +118,9 @@ It was corrected to:
 
 The resources were destroyed and deployed again. After the correction, cloud-init installed Nginx automatically and the website was accessible through the public IP address.
 
-## Architecture
-
-The architecture remained mostly the same as in Baseline09. The main change was that the VM now uses EC2 user data and cloud-init to automatically install Nginx during creation.
 
 ## What is needed later
 
 The same provisioning method can later be used to automatically install and configure other applications instead of configuring the VM manually.
 
 
-![ ubuntu vm systemctl status ngnix ei onnistu](screenshots/image-1.png)
-
-![selaimessa ei saa yhteyttä](screenshots/image-2.png)
-
-![uusi apply onnistui](screenshots/image-3.png)
-
-![nginx onnistui public vm](screenshots/image-4.png)
