@@ -1,0 +1,8 @@
+# cloud-config
+
+/*
+runcmd:
+  - echo "Hello from cloud-init" > /tmp/cloudinit-test.txt
+  - apt-get update
+  - apt-get install -y nginx
+*/
