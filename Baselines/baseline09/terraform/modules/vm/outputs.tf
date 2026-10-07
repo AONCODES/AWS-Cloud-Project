@@ -9,3 +9,10 @@ output "vm_public_ip" {
 output "vm_public_dns" {
   value = aws_instance.vm.public_dns
 }
+
+output "custom_ami_id"{
+  value = aws_ami_from_instance.custom_ami.id
+}
+output "image_vm_public_ip" {
+  value = aws_instance.image_vm.public_ip
+}

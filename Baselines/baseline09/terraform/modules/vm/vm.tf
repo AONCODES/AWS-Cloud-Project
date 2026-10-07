@@ -97,3 +97,27 @@ resource "aws_instance" "vm" {
     Task = "VM"
   }
 }
+resource "aws_ami_from_instance" "custom_ami" {
+  name = "nginx-ami"
+  source_instance_id = aws_instance.vm.id
+
+  tags = {
+    Name = "nginx-ami"
+    Task = "Custom VM image"
+  }
+}
+
+resource "aws_instance" "image_vm" {
+  ami                         = aws_ami_from_instance.custom_ami.id
+  instance_type               = var.vm_type
+  subnet_id                   = var.subnet_id
+  vpc_security_group_ids      = [aws_security_group.vm.id]
+  associate_public_ip_address = true
+  key_name                    = aws_key_pair.vm_key.key_name
+  iam_instance_profile        = "LabInstanceProfile"
+
+  tags = {
+    Name = "image-vm"
+    Task = "Custom VM image"
+  }
+}

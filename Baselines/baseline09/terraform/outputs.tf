@@ -56,3 +56,10 @@ output "public_storage_name" {
 output "protected_storage_name" {
   value = module.storage.protected_storage_name
 }
+
+output "custom_ami_id"{
+  value = module.vm.custom_ami_id
+}
+output "image_vm_public_ip" {
+  value = module.vm.image_vm_public_ip
+}
