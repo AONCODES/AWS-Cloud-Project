@@ -19,6 +19,17 @@ resource "aws_resourcegroups_group" "architect_course" {
 }
 */
 
+data "aws_iam_role" "lab_role" {
+  name = "LabRole"
+}
+
+module "backup" {
+  source = "./modules/backup"
+
+  vm_arn          = module.vm.vm_arn
+  backup_role_arn = data.aws_iam_role.lab_role.arn
+}
+
 module "network" {
   source = "./modules/network"
   aws_region = var.aws_region
@@ -52,3 +63,4 @@ module "credentials" {
 
   dummy_password = var.dummy_password
 }
+

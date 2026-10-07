@@ -16,3 +16,7 @@ output "custom_ami_id"{
 output "image_vm_public_ip" {
   value = aws_instance.image_vm.public_ip
 }
+output "vm_arn" {
+  description = "ARN of the VM"
+  value       = aws_instance.vm.arn
+}
