@@ -121,3 +121,20 @@ resource "aws_instance" "image_vm" {
     Task = "Custom VM image"
   }
 }
+
+resource "aws_instance" "private_vm" {
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = var.vm_type
+  subnet_id                   = var.private_subnet_id
+  vpc_security_group_ids      = [aws_security_group.vm.id]
+  associate_public_ip_address = false
+  key_name                    = aws_key_pair.vm_key.key_name
+  iam_instance_profile        = "LabInstanceProfile"
+
+  user_data = file("${path.root}/cloudinit/sample.yaml")
+
+  tags = {
+    Name = "private-vm"
+    Task = "NAT Gateway"
+  }
+}
