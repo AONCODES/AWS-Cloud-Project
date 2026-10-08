@@ -11,3 +11,8 @@ variable "vm_type" {
 }
 
 variable "vm_keypair" {}
+
+variable "private_subnet_id" {
+  description = "Private subnet ID for the private VM"
+  type        = string
+}

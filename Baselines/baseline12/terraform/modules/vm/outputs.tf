@@ -20,3 +20,8 @@ output "vm_arn" {
   description = "ARN of the VM"
   value       = aws_instance.vm.arn
 }
+
+output "private_vm_private_ip" {
+  description = "Private IP address of the private VM"
+  value       = aws_instance.private_vm.private_ip
+}
