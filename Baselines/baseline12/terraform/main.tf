@@ -47,6 +47,7 @@ module "vm" {
 
   vpc_id = module.network.vpc_id
   subnet_id = module.network.subnet_public_az1_id
+  private_subnet_id = module.network.subnet_private_az1_id
 
   vm_type = var.vm_type
   vm_keypair = var.vm_keypair
