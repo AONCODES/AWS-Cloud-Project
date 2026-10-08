@@ -287,6 +287,27 @@ resource "aws_network_acl_rule" "private_ingress_https_public_az2" {
   from_port      = 443
   to_port        = 443
 }
+
+resource "aws_network_acl_rule" "private_ingress_ephemeral" {
+  network_acl_id = aws_network_acl.private.id
+  rule_number    = 300
+  egress         = false
+  protocol       = "tcp"
+  rule_action    = "allow"
+  cidr_block     = "0.0.0.0/0"
+  from_port      = 1024
+  to_port        = 65535
+}
+
+resource "aws_network_acl_rule" "private_egress_all" {
+  network_acl_id = aws_network_acl.private.id
+  rule_number    = 310
+  egress         = true
+  protocol       = "-1"
+  rule_action    = "allow"
+  cidr_block     = "0.0.0.0/0"
+}
+
 resource "aws_network_acl_association" "private_az1" {
   subnet_id      = aws_subnet.private_az1.id
   network_acl_id = aws_network_acl.private.id
