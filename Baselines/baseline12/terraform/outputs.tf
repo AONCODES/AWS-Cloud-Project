@@ -63,3 +63,8 @@ output "custom_ami_id"{
 output "image_vm_public_ip" {
   value = module.vm.image_vm_public_ip
 }
+
+output "private_vm_private_ip" {
+  description = "Private IP address of the private VM"
+  value       = module.vm.private_vm_private_ip
+}
