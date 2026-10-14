@@ -219,7 +219,7 @@ Lambda gets the Slack webhook URL from AWS Systems Manager Parameter Store and s
 
 ### Notification flow
 
-![alt text](screenshots/image-6.png)
+![kuva](screenshots/image-7.png)
 
 The integration works as follows:
 
