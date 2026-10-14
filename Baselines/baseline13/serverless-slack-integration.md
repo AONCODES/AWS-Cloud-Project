@@ -272,25 +272,10 @@ The problem was solved by renaming it to `lambda_function.py`.
 
 The first Lambda test also failed because the webhook URL stored in Parameter Store contained an extra `echo` prefix.
 
-The incorrect parameter value was updated, and the Lambda test was executed again.
+The incorrect parameter value was updated, and the Lambda test was tested again.
 
-After the correction, Lambda returned HTTP status code `200` and the message appeared in Slack.
+After the new test, Lambda returned HTTP status code `200` and the message appeared in Slack.
 
 ## What is needed later
 
 The Lambda function can be reused in Baseline14 to send AWS budget notifications to Slack.
-
-The next task will add an AWS Budget, a budget alert and an Amazon SNS topic.
-
-SNS will trigger the Lambda function when the budget alert threshold is exceeded. The Python function will need to be updated to process SNS event messages.
-
-
-![apply onnistui](screenshots/image.png)
-
-![konsolessa näkyy slack notifier](screenshots/image-2.png)
-
-![cloudshell lambda active](screenshots/image-1.png)
-
-![konsole response onnistui](screenshots/image-3.png)
-
-![slack selaimessa](screenshots/image-4.png)
