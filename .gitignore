@@ -5,6 +5,7 @@
 .aws/
 *.pem
 aws-exports.js
+lambda_function.zip
 
 # Terraform (if used instead of/alongside CloudFormation)
 
