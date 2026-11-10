@@ -153,6 +153,8 @@ resource "aws_route_table" "private_app" {
   }
 }
 
+# subnets associated to pivate_app routetable
+
 resource "aws_route_table_association" "private_app_a" {
   subnet_id      = aws_subnet.private_app_a.id
   route_table_id = aws_route_table.private_app.id
@@ -161,4 +163,24 @@ resource "aws_route_table_association" "private_app_a" {
 resource "aws_route_table_association" "private_app_b" {
   subnet_id      = aws_subnet.private_app_b.id
   route_table_id = aws_route_table.private_app.id
+}
+
+# DB routetable / no internet access // AWS adds automatically local route 10.0.0.0/16 // VPC traffic
+
+resource "aws_route_table" "private_db" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "ctfd_private_db_rt"
+  }
+}
+
+resource "aws_route_table_association" "private_db_a" {
+  subnet_id      = aws_subnet.private_db_a.id
+  route_table_id = aws_route_table.private_db.id
+}
+
+resource "aws_route_table_association" "private_db_b" {
+  subnet_id      = aws_subnet.private_db_b.id
+  route_table_id = aws_route_table.private_db.id
 }
