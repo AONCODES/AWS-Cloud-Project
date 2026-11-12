@@ -14,7 +14,7 @@ resource "aws_db_subnet_group" "ctfd" {
 
 # RDS MySQL database for CTFd.
 resource "aws_db_instance" "ctfd" {
-  identifier = "ctfd_mysql"
+  identifier = "ctfd-mysql"
 
   engine         = "mysql"
   instance_class = "db.t3.micro"
