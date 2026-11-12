@@ -8,6 +8,8 @@ resource "aws_launch_template" "ctfd" {
     aws_security_group.ec2.id
   ]
 
+  user_data = filebase64("${path.module}/userdata.sh")
+  
   tags = {
     Name = "ctfd_launch_template"
   }
