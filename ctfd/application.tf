@@ -9,7 +9,7 @@ resource "aws_launch_template" "ctfd" {
   ]
 
   user_data = filebase64("${path.module}/userdata.sh")
-  
+
   tags = {
     Name = "ctfd_launch_template"
   }

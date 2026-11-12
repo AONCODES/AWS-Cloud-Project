@@ -1,0 +1,39 @@
+# Subnet group for the CTFd MySQL database.
+resource "aws_db_subnet_group" "ctfd" {
+  name = "ctfd_db_subnet_group"
+
+  subnet_ids = [
+    aws_subnet.private_db_a.id,
+    aws_subnet.private_db_b.id
+  ]
+
+  tags = {
+    Name = "ctfd_db_subnet_group"
+  }
+}
+
+# RDS MySQL database for CTFd.
+resource "aws_db_instance" "ctfd" {
+  identifier = "ctfd_mysql"
+
+  engine         = "mysql"
+  instance_class = "db.t3.micro"
+
+  allocated_storage = 20
+
+  db_name  = "ctfd"
+  username = "admin"
+  manage_master_user_password = true
+
+  db_subnet_group_name   = aws_db_subnet_group.ctfd.name
+  vpc_security_group_ids = [aws_security_group.rds.id]
+
+  multi_az            = false
+  publicly_accessible = false
+
+  skip_final_snapshot = true
+
+  tags = {
+    Name = "ctfd_mysql"
+  }
+}
