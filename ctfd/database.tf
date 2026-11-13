@@ -56,3 +56,21 @@ resource "aws_elasticache_subnet_group" "ctfd" {
   }
 }
 
+# Single Node Redis cache for CTFd. Might later add more for fault tolerance / single point of failure
+resource "aws_elasticache_cluster" "ctfd" {
+  cluster_id = "ctfd-redis"
+
+  engine               = "redis"
+  engine_version       = "7.0"
+  node_type            = "cache.t3.micro"
+  num_cache_nodes      = 1
+  parameter_group_name = "default.redis7"
+  port                 = 6379
+
+  subnet_group_name = aws_elasticache_subnet_group.ctfd.name
+  security_group_ids = [aws_security_group.redis.id]
+
+  tags = {
+    Name = "ctfd_redis"
+  }
+}
