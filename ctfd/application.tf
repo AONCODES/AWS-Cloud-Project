@@ -7,8 +7,10 @@ resource "aws_launch_template" "ctfd" {
   vpc_security_group_ids = [
     aws_security_group.ec2.id
   ]
-
-  user_data = filebase64("${path.module}/userdata.sh")
+  
+  user_data = base64encode(templatefile("${path.module}/userdata.sh", {
+  docker_compose = file("${path.module}/docker-compose.yml")
+}))
 
   tags = {
     Name = "ctfd_launch_template"
