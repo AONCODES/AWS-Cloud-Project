@@ -83,7 +83,7 @@ resource "aws_sns_topic_policy" "ctfd_alerts" {
 # Package the Slack notification Lambda.
 data "archive_file" "slack_lambda" {
   type        = "zip"
-  source_file = "${path.module}/lambda_function.py"
+  source_file = "${path.module}/lambda.py"
   output_path = "${path.module}/lambda_function.zip"
 }
 
@@ -91,7 +91,7 @@ data "archive_file" "slack_lambda" {
 resource "aws_lambda_function" "slack_notifier" {
   function_name = "ctfd-slack-notifier"
   role          = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/LabRole"
-  handler       = "lambda_function.lambda_handler"
+  handler       = "lambda.lambda_handler"
   runtime       = "python3.12"
 
   filename         = data.archive_file.slack_lambda.output_path
