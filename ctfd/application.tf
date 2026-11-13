@@ -4,6 +4,11 @@ resource "aws_launch_template" "ctfd" {
   image_id      = "ami-08b275ac6cc5dbefb"
   instance_type = "t3.micro"
 
+  # Use the existing AWS Academy IAM instance profile. Should use probaly more restricted iam role but due to restricitons we go with LabRole
+  iam_instance_profile {
+  name = "LabInstanceProfile"
+}
+
   vpc_security_group_ids = [
     aws_security_group.ec2.id
   ]
