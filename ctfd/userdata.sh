@@ -35,6 +35,9 @@ DB_PASSWORD=$(DB_PASSWORD="$DB_PASSWORD" python3 -c \
 export DATABASE_URL="mysql+pymysql://${db_user}:$DB_PASSWORD@${db_host}:3306/${db_name}"
 export REDIS_URL="redis://${redis_host}:6379"
 
+# Configure shared S3 storage.
+export AWS_S3_BUCKET="${s3_bucket}"
+
 # Retrieve the shared CTFd secret key.
 SECRET_KEY=$(aws ssm get-parameter \
   --name "/ctfd/secret_key" \

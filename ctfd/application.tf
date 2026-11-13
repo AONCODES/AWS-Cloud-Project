@@ -23,6 +23,7 @@ resource "aws_launch_template" "ctfd" {
 
   redis_host = aws_elasticache_cluster.ctfd.cache_nodes[0].address
   aws_region = "us-east-1"
+  s3_bucket = aws_s3_bucket.ctfd_uploads.id
 }))
 
   tags = {

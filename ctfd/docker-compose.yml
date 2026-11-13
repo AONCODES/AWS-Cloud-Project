@@ -12,3 +12,6 @@ services:
       SECRET_KEY: ${SECRET_KEY}
       REVERSE_PROXY: "true"
       WORKERS: "2"
+      UPLOAD_PROVIDER: "s3"
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET}
+      AWS_S3_REGION: "us-east-1"
