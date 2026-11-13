@@ -41,3 +41,18 @@ resource "aws_db_instance" "ctfd" {
     Name = "ctfd_mysql"
   }
 }
+
+# Subnet group for the CTFd Redis cache.
+resource "aws_elasticache_subnet_group" "ctfd" {
+  name = "ctfd_redis_subnet_group"
+
+  subnet_ids = [
+    aws_subnet.private_db_a.id,
+    aws_subnet.private_db_b.id
+  ]
+
+  tags = {
+    Name = "ctfd_redis_subnet_group"
+  }
+}
+
