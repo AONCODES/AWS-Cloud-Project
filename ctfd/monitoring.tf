@@ -37,7 +37,7 @@ resource "aws_budgets_budget" "ctfd" {
     notification_type         = "ACTUAL"
     subscriber_sns_topic_arns = [aws_sns_topic.ctfd_alerts.arn]
   }
-  
+
     depends_on = [aws_sns_topic_policy.ctfd_alerts]
 }
 
@@ -78,4 +78,46 @@ resource "aws_sns_topic_policy" "ctfd_alerts" {
       }
     ]
   })
+}
+
+# Package the Slack notification Lambda.
+data "archive_file" "slack_lambda" {
+  type        = "zip"
+  source_file = "${path.module}/lambda_function.py"
+  output_path = "${path.module}/lambda_function.zip"
+}
+
+# Send SNS notifications to Slack.
+resource "aws_lambda_function" "slack_notifier" {
+  function_name = "ctfd-slack-notifier"
+  role          = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/LabRole"
+  handler       = "lambda_function.lambda_handler"
+  runtime       = "python3.12"
+
+  filename         = data.archive_file.slack_lambda.output_path
+  source_code_hash = data.archive_file.slack_lambda.output_base64sha256
+
+  timeout = 15
+
+  environment {
+    variables = {
+      SLACK_WEBHOOK_PARAMETER = "/baseline13/slack/webhook"
+    }
+  }
+}
+
+# Subscribe the Lambda function to SNS alerts.
+resource "aws_sns_topic_subscription" "slack" {
+  topic_arn = aws_sns_topic.ctfd_alerts.arn
+  protocol  = "lambda"
+  endpoint  = aws_lambda_function.slack_notifier.arn
+}
+
+# Allow SNS to invoke the Lambda function.
+resource "aws_lambda_permission" "sns" {
+  statement_id  = "AllowSNSInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.slack_notifier.function_name
+  principal     = "sns.amazonaws.com"
+  source_arn    = aws_sns_topic.ctfd_alerts.arn
 }
