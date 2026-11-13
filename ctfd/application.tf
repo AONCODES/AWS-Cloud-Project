@@ -4,17 +4,25 @@ resource "aws_launch_template" "ctfd" {
   image_id      = "ami-08b275ac6cc5dbefb"
   instance_type = "t3.micro"
 
+  vpc_security_group_ids = [
+    aws_security_group.ec2.id
+  ]
+
   # Use the existing AWS Academy IAM instance profile. Should use probaly more restricted iam role but due to restricitons we go with LabRole
   iam_instance_profile {
   name = "LabInstanceProfile"
 }
 
-  vpc_security_group_ids = [
-    aws_security_group.ec2.id
-  ]
-  
   user_data = base64encode(templatefile("${path.module}/userdata.sh", {
   docker_compose = file("${path.module}/docker-compose.yml")
+
+  db_host    = aws_db_instance.ctfd.address
+  db_name    = aws_db_instance.ctfd.db_name
+  db_user    = aws_db_instance.ctfd.username
+  secret_arn = aws_db_instance.ctfd.master_user_secret[0].secret_arn
+
+  redis_host = aws_elasticache_cluster.ctfd.cache_nodes[0].address
+  aws_region = "us-east-1"
 }))
 
   tags = {
