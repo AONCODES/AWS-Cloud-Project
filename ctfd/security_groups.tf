@@ -101,6 +101,18 @@ resource "aws_vpc_security_group_egress_rule" "ec2_https" {
   ip_protocol = "tcp"
 }
 
+# Allow HTTP for Ubuntu package downloads.
+
+resource "aws_vpc_security_group_egress_rule" "ec2_http" {
+  security_group_id = aws_security_group.ec2.id
+  description       = "Allow outbound HTTP for package downloads"
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 80
+  to_port     = 80
+  ip_protocol = "tcp"
+}
+
 # Allow application connections to the MySQL database.
 
 resource "aws_vpc_security_group_egress_rule" "ec2_to_rds" {
