@@ -11,7 +11,7 @@ resource "terraform_data" "ctfd_uploads" {
     command = <<-EOT
       aws s3api create-bucket \
         --bucket ${self.input} \
-        --region ${var.aws_region}
+        --region us-east-1
 
       aws s3api put-public-access-block \
         --bucket ${self.input} \
