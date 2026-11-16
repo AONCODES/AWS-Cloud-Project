@@ -3,7 +3,12 @@ set -e
 
 # Update package lists and install dependencies.
 apt-get update
-apt-get install -y docker.io docker-compose-v2 awscli jq python3
+apt-get install -y docker.io docker-compose-v2 jq python3 curl unzip
+
+# Install AWS CLI v2.
+curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
+unzip -q /tmp/awscliv2.zip -d /tmp
+/tmp/aws/install
 
 # Enable and start Docker.
 systemctl enable --now docker
