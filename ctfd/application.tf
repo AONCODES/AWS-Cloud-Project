@@ -13,7 +13,7 @@ resource "aws_launch_template" "ctfd" {
   name = "LabInstanceProfile"
 }
 
-  user_data = base64encode(templatefile("${path.module}/userdata.sh", {
+  user_data = base64encode(trimspace(templatefile("${path.module}/userdata.sh", {
   docker_compose = file("${path.module}/docker-compose.yml")
 
   db_host    = aws_db_instance.ctfd.address
@@ -24,7 +24,7 @@ resource "aws_launch_template" "ctfd" {
   redis_host = aws_elasticache_cluster.ctfd.cache_nodes[0].address
   aws_region = "us-east-1"
   s3_bucket = terraform_data.ctfd_uploads.output
-}))
+})))
 
   depends_on = [
     terraform_data.ctfd_uploads
