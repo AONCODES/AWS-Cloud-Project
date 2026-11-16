@@ -1,18 +1,30 @@
-# S3 bucket for shared CTFd file uploads.
-resource "aws_s3_bucket" "ctfd_uploads" {
-  bucket_prefix = "ctfd-uploads-"
-
-  tags = {
-    Name = "ctfd_uploads"
-  }
+resource "random_string" "bucket_suffix" {
+  length  = 8
+  special = false
+  upper   = false
 }
 
-# Block all public access to the bucket.
-resource "aws_s3_bucket_public_access_block" "ctfd_uploads" {
-  bucket = aws_s3_bucket.ctfd_uploads.id
+resource "terraform_data" "ctfd_uploads" {
+  input = "ctfd-uploads-${random_string.bucket_suffix.result}"
 
-  block_public_acls       = true
-  ignore_public_acls      = true
-  block_public_policy     = true
-  restrict_public_buckets = true
+  provisioner "local-exec" {
+    command = <<-EOT
+      aws s3api create-bucket \
+        --bucket ${self.input} \
+        --region ${var.aws_region}
+
+      aws s3api put-public-access-block \
+        --bucket ${self.input} \
+        --public-access-block-configuration "BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true"
+
+      aws s3api put-bucket-tagging \
+        --bucket ${self.input} \
+        --tagging 'TagSet=[{Key=Name,Value=ctfd_uploads}]'
+    EOT
+  }
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "aws s3 rb s3://${self.input} --force"
+  }
 }

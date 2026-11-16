@@ -51,6 +51,7 @@ resource "aws_sns_topic_policy" "ctfd_alerts" {
     Version = "2012-10-17"
         Statement = [
       {
+        Sid = "AllowBudgetsPublish"
         Effect = "Allow"
         Principal = {
           Service = "budgets.amazonaws.com"
@@ -64,9 +65,10 @@ resource "aws_sns_topic_policy" "ctfd_alerts" {
         }
       },
       {
+        Sid = "AllowCloudWatchPublish"
         Effect = "Allow"
         Principal = {
-          Service = "cloudwatch.amazonaws.com"
+          Service = "cloudwatch.amazonaws.com" 
         }
         Action   = "SNS:Publish"
         Resource = aws_sns_topic.ctfd_alerts.arn
